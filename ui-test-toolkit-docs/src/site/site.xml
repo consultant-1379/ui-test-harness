@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/DECORATION/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+    <bannerLeft>
+        <name>UI Test Toolkit</name>
+    </bannerLeft>
+
+    <body>
+        <menu>
+            <item name="UI Test Toolkit" href="index.html" collapse="true">
+                <item name="Web testing" href="01_web.html"/>
+                <item name="Custom components" href="02_custom_components.html"/>
+                <item name="Advanced browser options" href="03_browsers.html"/>
+                <item name="Web testing FAQ &amp; HowTos" href="04_web_faq.html"/>
+                <item name="SWT testing" href="05_swt.html"/>
+                <item name="SWT testing FAQ &amp; HowTos" href="06_swt_faq.html"/>
+                <item name="Desktop testing" href="07_desktop.html"/>
+                <item name="TAF UI: UI Test Toolkit in TAF" href="https://taf.seli.wh.rnd.internal.ericsson.com/userdocs/snapshot/tools/taf-ui-sdk.html"/>
+                <item name="Sikuli Limitation &#129344;" href="08_limitation.html"/>
+            </item>
+        </menu>
+    </body>
+
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.6</version>
+    </skin>
+
+    <custom>
+        <fluidoSkin>
+            <breadcrumbDivider>|</breadcrumbDivider>
+            <sideBarEnabled>true</sideBarEnabled>
+            <sourceLineNumbersEnabled>false</sourceLineNumbersEnabled>
+        </fluidoSkin>
+    </custom>
+
+    <!--<custom>-->
+        <!--<uiStats>-->
+            <!--<serverUrl>https://cds.ericsson.se/analytics/</serverUrl>-->
+            <!--<siteId>12</siteId>-->
+        <!--</uiStats>-->
+        <!--<search>-->
+            <!--<url>http://atclvm1170.athtem.eei.ericsson.se:8080/search/#searchapp</url>-->
+        <!--</search>-->
+        <!--<fluidoSkin>-->
+            <!--<sourceLineNumbersEnabled>false</sourceLineNumbersEnabled>-->
+        <!--</fluidoSkin>-->
+    <!--</custom>-->
+</project>

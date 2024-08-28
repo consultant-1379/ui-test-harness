@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ericsson.de</groupId>
+        <artifactId>ui-test-modules</artifactId>
+        <version>1.0.36-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>ui-test-desktop</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ericsson.cifwk</groupId>
+            <artifactId>file-utils</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.de</groupId>
+            <artifactId>ui-test-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.sterodium</groupId>
+            <artifactId>sikuli-extension-client</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

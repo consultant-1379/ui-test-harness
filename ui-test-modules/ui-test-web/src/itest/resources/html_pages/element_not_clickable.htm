@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tests "element is not clickable" exception</title>
+    <style>
+        #bottom {
+            position: fixed;
+            top: 100px;
+            left: 100px;
+            height: 100px;
+            width: 100px;
+            background-color: #00ff00;
+        }
+        #top {
+            position: fixed;
+            top: 50px;
+            left: 50px;
+            height: 200px;
+            width: 200px;
+            background-color: #ff0000;
+        }
+    </style>
+</head>
+<script>
+    hideTopAfterDelay = function() {
+        var element = document.getElementById('top');
+        element.innerHTML = 'I will disappear in 3 seconds';
+        setTimeout(function() {
+            document.getElementById('top').style.display = 'none';
+        }, 3000);
+    }
+    changeText = function() {
+        var element = document.getElementById('bottom');
+        element.innerHTML = 'I was clicked';
+    }
+</script>
+<body>
+
+<button id="button" onclick="hideTopAfterDelay()">
+    Hide top after 3 seconds
+</button>
+<div id="bottom" onclick="changeText()">
+    I am not clickable (obscuring bottom div)
+</div>
+<div id="top">
+    I am clickable
+</div>
+
+</body>
+</html>

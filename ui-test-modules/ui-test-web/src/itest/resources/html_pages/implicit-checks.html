@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TAF UI Workshop: Implicit Checks</title>
+    <meta charset="utf-8">
+</head>
+<body>
+
+<br/><br/>Regular button:
+<button id="foundAfterScrollingPageDown" onclick="clickMe(this)">Click me</button>
+
+<br/><br/>Hiding button:
+<button id="hidingButton" onclick="hideMe(this)">Click me</button>
+
+<br/><br/>Invisible button:
+<button id="invisibleButton" onclick="clickMe(this)" style="display: none;">I am invisible</button>
+
+<br/><br/>Hidden button:
+<button id="hiddenButton" onclick="clickMe(this)" style="visibility: hidden;">I am hidden</button>
+
+<br/><br/>Disabled button:
+<button id="disabledButton" onclick="clickMe(this)" disabled>I am disabled</button>
+
+<br/><br/>Button outside of browser screen:
+<button id="outerButton" onclick="clickMe(this)" style="position: absolute; left: -150px">I am located outside page</button>
+
+<br/><br/>Button hidden behind other UI element:
+<button id="coveredButton" onclick="clickMe(this)">I am hidden behind other panel</button>
+<span id="panelCoveringButton" style="position: absolute; left: 350px; padding: 10px; background: red">Panel over the button</span>
+
+<script language="JavaScript">
+    function clickMe(element) {
+        element.innerHTML = "I was clicked";
+    }
+    function hideMe(element) {
+        element.remove();
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tests composite components</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+
+</head>
+<body>
+
+<script>
+    window.onload = function(e) {
+        setTimeout("showPersonsWorkAddress()", 3000);
+    };
+
+    function showPersonsWorkAddress() {
+        document.getElementById("workAddressDataContainer").innerHTML =
+                "<div id=\"personWorkAddress\" class=\"workAddress\">\n" +
+                " <label for=\"workCity\">City</label><input type=\"text\" id=\"workCity\" class=\"city\" value=\"\"/>\n" +
+                " <label for=\"workStreet\">Street</label><input type=\"text\" id=\"workStreet\" class=\"street\" value=\"\"/>\n" +
+                " <label for=\"workZipCode\">ZIP code</label><input type=\"text\" id=\"workZipCode\" class=\"zip\" value=\"ZIP-1234\"/>\n" +
+                "</div>";
+    }
+</script>
+
+<h1>Office location</h1>
+
+<div class="address">
+    <p><label for="officeCity">City</label><input type="text" id="officeCity" class="city" value=""/></p>
+    <p><label for="officeStreet">Street</label><input type="text" id="officeStreet" class="street" value=""/></p>
+</div>
+
+<div id="container">
+
+    <h1>Registration form</h1>
+
+    <h2>Person's data</h2>
+    <form id="customForm">
+        <div>
+            <label for="firstName">First name</label><input type="text" id="firstName" name="firstName" class="credential"/>
+            <label for="lastName">Last name</label><input type="text" id="lastName" name="lastName" class="credential"/>
+        </div>
+
+        <h3>Home address</h3>
+        <div class="homeAddress">
+            <label for="homeCity">City</label><input type="text" class="city" id="homeCity"/>
+            <label for="homeStreet">Street</label><input type="text" class="street" id="homeStreet"/>
+        </div>
+
+        <h3>Work address</h3>
+        <div id="workAddressDataContainer">
+            <span id="workAddressLoadingLabel">Loading work address data in 3 seconds....</span>
+        </div>
+
+        <input type="button" id="submitButtonId" value="Submit"/>
+    </form>
+</div>
+
+<h2>Manager's data</h2>
+<h3>Home address</h3>
+<div class="address">
+    <label for="managersHomeCity">City</label><input type="text" class="city" id="managersHomeCity"/>
+    <label for="managersHomeStreet">Street</label><input type="text" class="street" id="managersHomeStreet"/>
+</div>
+<h3>Personal data</h3>
+<div>
+    <label for="managerFirstName">First name</label><input type="text" id="managerFirstName" name="managerFirstName" class="credential"/>
+    <label for="managerLastName">Last name</label><input type="text" id="managerLastName" name="managerLastName" class="credential"/>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tests of Web elements' wrappers</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+	<style>
+		.label {
+			font-size: 20px;
+		}
+		.activeLabel {
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<body>
+
+<script src="jquery-1.10.2.js"></script>
+<script src="jquery-ui.js"></script>
+
+<script>
+	$(document).ready(function() {
+		setTimeout("activateNext()", 3000);
+	});
+	function activateNext() {
+		$('#label2').removeClass('activeLabel');
+		$('#label3').addClass('activeLabel');
+		$('#updateMarker').show();
+	}
+</script>
+
+<div id="container">
+	<div id="label1" class="label">Label 1</div>
+	<div id="label2" class="label activeLabel">Label 2</div>
+	<div id="label3" class="label">Label 3</div>
+</div>
+
+<div id="updateMarker" style="display: none">Active label changed</div>
+	
+
+</body>
+</html>

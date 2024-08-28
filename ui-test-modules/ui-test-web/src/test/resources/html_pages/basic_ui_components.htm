@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tests of Web elements' wrappers</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    
+    <style type="text/css">
+    .sampleControls {
+    }
+   	.controlBox {
+   		padding-top: 5px;
+   		padding-bottom: 5px;
+   		border-bottom: 1px dashed black;
+   	}
+   	.commonClass {
+   	}
+   	.dragTarget {width:31px;height:31px;padding:10px;border:1px solid #aaaaaa;}
+   	
+    </style>
+</head>
+
+<body>
+
+<script src="jquery-1.10.2.js"></script>
+<script src="jquery-ui.js"></script>
+
+<script>
+	function showTimestamp() {
+		var result = Date.now();
+		$('#timestampPresenter').val(result);
+	}
+	
+	function logMouseEvent(eventName) {
+		$('#mouseButtonEventId').val(eventName);
+	}
+	
+	function logMouseMoveEvent() {
+		$('#mouseMoveDetectorId').val("MOUSE_MOVE");
+	}
+
+	function clearMouseMoveEvent() {
+		$('#mouseMoveDetectorId').val("");
+	}
+
+	function onMouseUp(event) {
+		if (event.which == 3) { // right click
+			document.getElementById("contextMenu").style.display = 'block';
+		} else {
+			logMouseEvent('MOUSE_UP')
+		}
+	}
+
+	$(document).ready(function() {
+		setTimeout("$('#hidingDiv').remove()", 2500);
+		setTimeout("$(\"#visibleInFutureDiv\").removeAttr(\"style\")", 3000);
+		setTimeout("$(\"#enabledInFutureButton\").removeAttr(\"disabled\")", 3000);
+		setTimeout("$(\"#timeTriggered\").append(\"<div id=\\\"appearingDiv\\\" class=\\\"commonClass appearingDiv\\\">Text appearing in 3 seconds...</div>\")", 3000);
+		setTimeout("$(\"#timeTriggered\").append(\"<div id=\\\"quickAppearingDiv\\\" class=\\\"quickAppearingDivClass appearingDiv\\\">Text appearing in 1 second...</div>\")", 1000);
+		setTimeout("$(\"#timeTriggered\").append(\"<div id=\\\"appearingCompositeComponent\\\"></div>\")", 3000);
+		setTimeout("$(\"#appearingCompositeComponent\").append(\"<div id=\\\"appearingCompositeComponentChild\\\">Composite component text appearing in 5 seconds...</div>\")", 5000);
+		setTimeout("$(\"#emptyTextBox\").val(\"value\")", 1000);
+	});
+
+	// Drag'n'drop
+	function allowDrop(ev)
+	{
+		ev.preventDefault();
+	}
+	
+	function drag(ev)
+	{
+		logdragAndDropState("DRAG_STARTED");
+		ev.dataTransfer.setData("Text", ev.target.id);
+	}
+	
+	function drop(ev)
+	{
+		ev.preventDefault();
+		var data = ev.dataTransfer.getData("Text");
+		ev.target.appendChild(document.getElementById(data));
+		logdragAndDropState("DROPPED_TO_TARGET");
+	}	
+	
+	function logdragAndDropState(event) {
+		$('#dragAndDropStateId').val(event);
+	}
+
+	 $(function() {
+		 $( "#draggableOld" ).draggable({
+			 start: function( event, ui ) {
+				logdragAndDropState("DRAG_STARTED");
+			 }
+		 });
+		 $( "#dragTargetOld" ).droppable({
+			 drop: function( event, ui ) {
+				 logdragAndDropState("DROPPED_TO_TARGET");
+			 }
+	 });
+	});
+
+	/* function getElementXPath(elt) {
+		var path = "";
+		for (; elt && elt.nodeType == 1; elt = elt.parentNode) {
+			idx = getElementIdx(elt);
+			xname = elt.tagName;
+			if (elt.id) {
+				xname += "[@id='" + elt.id + "']";
+			} else {
+				if (idx > 1) {
+					xname += "[" + idx + "]";
+				}
+			}
+			path = "/" + xname + path;
+		}
+
+		return path;
+	} */
+	
+	function getElementXPath(elt) {
+		var path = "";
+		for (; elt && elt.nodeType == 1; elt = elt.parentNode) {
+			idx = getElementIdx(elt);
+			xname = elt.tagName;
+			if (idx > 1)
+				xname += "[" + idx + "]";
+			path = "/" + xname + path;
+		}
+
+		return path;
+	}
+
+
+	function getElementIdx(elt) {
+		var count = 1;
+		for ( var sib = elt.previousSibling; sib; sib = sib.previousSibling) {
+			if (sib.nodeType == 1 && sib.tagName == elt.tagName)
+				count++
+		}
+
+		return count;
+	}
+
+    function handleDeletableText() {
+        if ($('#deletingButton').val() == 'Delete') {
+            $('#deletableText').remove();
+            $('#deletingButton').val('Undelete');
+        } else {
+            $('#deletableTextContainer').append("<span id=\"deletableText\">Deletable text</span>");
+            $('#deletingButton').val('Delete');
+        }
+    }
+
+</script>
+<div id="container">
+	<h2 onclick="alert(getElementXPath(document.getElementById('sampleControls')))">Sample controls</h2>
+	<div id="sampleControls">
+		<div class="controlBox">
+			<input type="button" id="buttonId" class="commonClass" name="buttonName" value="ButtonCaption"
+				   onclick="document.getElementById('buttonClickedLabelId').style.display = 'block'"/>
+			<span id="buttonClickedLabelId" style="display:none;">Button clicked!</span>
+		</div>
+		<div class="controlBox">
+			<input type="text" id="textBoxId" class="commonClass" name="textBoxName" value="Sample text" />
+		</div>
+		<div class="controlBox">
+			<a id="linkId" class="commonClass" href="http://www.ericsson.se/" target="_blank">Sample link</a>
+		</div>
+		<div class="controlBox">
+			<div id="labelId" class="divClass commonClass">Div <b>bold</b> content</div>
+		</div>
+		<div class="controlBox" id="dropdownBoxContainer">
+			<select id="selectId" name="selectName" class="commonClass">
+				<option id="option1Id" value="option1 value">option1 title</option>
+				<option id="option2Id" value="option2 value">option2 title</option>
+				<option id="option3Id" value="option3 value" selected>option3 title</option>
+			</select>
+		</div>
+		<div class="controlBox">
+			<select id="listboxId" name="listboxName" class="commonClass" multiple="multiple">
+				<option value="m_option1 value">m_option1 title</option>
+				<option value="m_option2 value">m_option2 title</option>
+				<option value="m_option3 value" selected>m_option3 title</option>
+			</select>
+		</div>
+		<div class="controlBox">
+			<div>Checkboxes:</div>
+			<input type="checkbox" id="checkbox11" name="checkbox1" value="orange"/> <label for="checkbox11">Orange</label>
+			<input type="checkbox" id="checkbox12" name="checkbox1" value="apple" checked="checked"/> <label for="checkbox12">Apple</label>
+			<input type="checkbox" id="checkbox13" name="checkbox1" value="grapes"/> <label for="checkbox13">Grapes</label>
+		</div>
+		<div class="controlBox">
+			<div>Radiobuttons:</div>
+			<input type="radio" id="radio11" name="radio1" value="google"/> <label for="radio11">Google</label>
+			<input type="radio" id="radio12" name="radio1" value="msn" checked="checked"/> <label for="radio12">MSN</label>
+			<input type="radio" id="radio13" name="radio1" value="bing"/> <label for="radio13">Bing</label>
+		</div>
+        <div class="controlBox">
+            <input type="file" id="fileSelector" class="commonClass" name="file" />
+        </div>
+        <div class="readOnlyFileBox">
+            <input type="file" id="hiddenFileSelector" class="commonClass" name="file" hidden="true" readonly/>
+        </div>
+	</div>
+
+	<h2>JS-managed elements</h2>
+	<div id="hiddenDiv" style="display:none">Hidden div</div>
+	<div id="timeTriggered">
+		<div id="hidingDiv">Text hiding in 3 seconds...</div>
+		<div id="visibleInFutureDiv" style="display:none">Text becomes visible in 3 seconds...</div>
+		<button id="enabledInFutureButton" type="button" disabled="disabled">Click Me!</button>
+	</div>
+    <div id="timeTriggered2">
+        <input type="text" id="emptyTextBox" value="" />
+    </div>
+	<div> <input type="text" id="timestampPresenter" name="timestampPresenter" /> <input type="button" id="timestampGenerator" value="Show" onclick="showTimestamp()"/></div>
+    <div>
+        <div id="deletableTextContainer"><span id="deletableText">Deletable text</span></div>
+        <input type="button" id="deletingButton" name="deletingButton" value="Delete" onclick="handleDeletableText()"/>
+    </div>
+
+	<h2>Windows</h2>
+	<a id="newPopupOpener" href="#" onclick="window.open('./applications.htm')">New JS window link</a>
+	<a id="newWindowOpener" href="./applications.htm" target="_blank">New window link</a>
+
+	<h2>Mouse events</h2>
+	<input id="mouseButtonId" type="button" value="Mouse events button" 
+		onmouseover="logMouseEvent('MOUSE_OVER')"
+		onmouseout="logMouseEvent('MOUSE_OUT'); clearMouseMoveEvent()"
+		onmousedown="logMouseEvent('MOUSE_DOWN')"
+		onmousemove="logMouseMoveEvent()"
+		onmouseup="onMouseUp(event)"
+		oncontextmenu="return false;"
+	/>
+	<span id="labelWithContextMenu" oncontextmenu="return false;" onmouseup="onMouseUp(event)">Label with context menu</span>
+	<div>Main mouse event: <input type="text" id="mouseButtonEventId" name="mouseButtonEvent"/></div>
+	<div>Mouse move detector: <input type="text" id="mouseMoveDetectorId" name="mouseMoveEvent"/></div>
+	<div id="contextMenu" style="display:none;">Context Menu</div>
+
+	<h2>Drag and drop - HTML 5</h2>
+	<div>Drag the image into rectangle</div>
+	<div id="dragTarget" class="dragTarget" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+	<br>
+	<img id="draggable" src="dragme.gif" draggable="true" ondragstart="drag(event)"/>
+	<div>Drag and drop process state: <input type="text" id="dragAndDropStateId" name="dragAndDropState"/></div> 
+
+	<h2>Drag and drop - jQuery</h2>
+	<div>Drag the image into rectangle</div>
+	<div id="dragTargetOld" class="dragTarget"></div>
+	<br>
+	<div id="draggableOld" style="width:31px;height:31px;"><img src="dragme.gif"/></div>
+
+    <div id="childrenContainer">
+        <div class="directChild">
+            <div class="subChild"></div>
+        </div>
+        <div class="directChild">
+            <div class="subChild"></div>
+        </div>
+    </div>
+
+</div>
+	
+
+</body>
+</html>

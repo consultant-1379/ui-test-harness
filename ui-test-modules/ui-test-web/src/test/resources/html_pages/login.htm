@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OSS Login</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- Hook for rest calls redirect - please do not touch this comment at all! -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+</head>
+<script>
+	function login() {
+		var username = document.getElementById('loginUsername').value;
+		var password = document.getElementById('loginPassword').value;
+		if (username == 'ssouser' && password == 'ssouser01') {
+			return true;
+		} else {
+			var messagesBox = document.getElementById('messagesBox');
+			messagesBox.style.display = 'block';
+			return false;
+		}
+	}
+</script>
+<body>
+<div id="Container">
+    <div class="torLogin-Holder">
+        <div class="torLogin-Holder-inner">
+            <div class="torLogin-Holder-ericssonLogo"></div>
+            <div class="torLogin-Holder-nameWrap"><span class="torLogin-Holder-title">OSS Login</span></div>
+            <form action="applications.htm" name="loginForm" id="loginForm" class="torLogin-Holder-form" method="POST" onsubmit="return login()">
+
+                <div class="torLogin-Holder-inputWrap">
+                    <input type="text" id="loginUsername" name="IDToken1" autofocus="autofocus" value=""
+                           placeholder="Username"
+                           class="torLogin-Holder-loginUsername">
+
+                    <div class="torLogin-Holder-inputComposition">
+                        <input type="password" id="loginPassword" name="IDToken2" value="" placeholder="Password"
+                               class="torLogin-Holder-loginPassword">
+                        <input id="submit" type="submit" class="torLogin-Holder-formButton" value="Login"/>
+                    </div>
+                    <div id="messagesBox" style="display:none" class="torLogin-Holder-messagesBox">Your username/password appears to be invalid. Please try again</div>
+
+                    <div class="torLogin-Holder-passRemind"></div>
+                </div>
+            </form>
+        </div>
+        <p class="torLogin-Holder-copy">© Ericsson Enterprise AB, 2013. All rights reserved.</p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        div, td, th {
+            padding: 5px;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        .section {
+            border: 1px;
+            padding: 10px;
+            margin: 10px;
+            background-color: lightgray;
+        }
+        .customComponent {
+            background-color: lightgreen;
+        }
+        .subComponent {
+            border-style: solid none solid none;
+            border-color: lightgreen;
+            border-width: 5px;
+            background-color: greenyellow;
+        }
+        .stale {
+            border-style: dashed;
+        }
+    </style>
+</head>
+<body>
+
+<div class="customComponentHolder section">
+    <div>
+        <h3 class="customComponentHolderHeader">My page section (will become stale)</h3>
+        <button class="componentHolderStaler" onclick="keepElStalingFor('.customComponentHolder', 5)">Stale component holder</button>
+
+        <button class="row1Staler" onclick="keepElStalingFor('.row1', 5)">Stale row 1 (for 5 seconds)</button>
+        <button class="row1FailStaler" onclick="keepElStalingFor('.row1', 10)">Stale row 1 (for 10 seconds)</button>
+
+        <button class="row1Cell1Staler" onclick="keepElStalingFor('.row1cell1', 5)">Stale cell 1:1 (dor 5 seconds)</button>
+        <button class="row1Cell1FailStaler" onclick="keepElStalingFor('.row1cell1', 10)">Stale cell 1:1 (for 10 seconds)</button>
+    </div>
+    <div class="customComponent">
+        <h1 class="componentHeader">Custom component</h1>
+        <table>
+            <tr class="row1 subComponent">
+                <th class="row1cell1">Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+            </tr>
+            <tr class="subComponent">
+                <td>Value 1</td>
+                <td>Another Value 1</td>
+                <td>Whatever 1</td>
+            </tr>
+            <tr class="subComponent">
+                <td>Value 2</td>
+                <td>Another Value 2</td>
+                <td>Whatever 2</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="section">
+    <h1>Undefined page section</h1>
+</div>
+
+<div class="sharedPartOfCustomComponentHolder section">
+    <div>
+        <h3>This panel will become stale</h3>
+    </div>
+    <div class="sharedPartOfCustomComponent customComponent">
+        <h1>Shared part of custom component</h1>
+        <table>
+            <tr class="subComponent">
+                <th>Shared Column 1</th>
+                <th>Shared Column 2</th>
+                <th>Shared Column 3</th>
+            </tr>
+            <tr class="subComponent">
+                <td>Shared Value 1</td>
+                <td>Shared Another Value 1</td>
+                <td>Shared Whatever 1</td>
+            </tr>
+            <tr class="subComponent">
+                <td>Shared Value 2</td>
+                <td>Shared Another Value 2</td>
+                <td>Shared Whatever 2</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script>
+
+    function keepElStalingFor(css, seconds) {
+
+        staleElement(css);
+
+        var timer = setInterval(function() { staleElement(css) }, 0);
+        setTimeout(function() { clearInterval(timer); }, seconds * 1000);
+
+        console.log("Staling completed.");
+    }
+
+    function staleElement(css) {
+
+        var staleElement = document.querySelector(css);
+
+        // creating a new node
+        var staleElementReplacement = document.createElement(staleElement.tagName);
+        staleElementReplacement.className = staleElement.className + ' stale';
+
+        // copying child nodes
+        while (staleElement.firstChild) {
+            staleElementReplacement.appendChild(staleElement.firstChild);
+        }
+
+        // replacing nodes
+        staleElement.parentNode.replaceChild(staleElementReplacement, staleElement);
+
+        console.log("Staling...");
+    }
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Select Multiple Table rows</title>
+    <script src="jquery-1.10.2.js"></script>
+    <script src="jquery-ui.js"></script>
+
+    <style>
+        #selectable .ui-selecting { background: #FECA40; }
+        #selectable .ui-selected { background: #F39814; color: white; }
+        #selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+        #selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+        .outer { width: 200px; height: 50px; background: red; }
+		.inner { width: 50px; height: 50px; background: blue; display: none; }
+		.outer:hover .inner { display: block; }
+    </style>
+    <script>
+  $(function() {
+    $( "#selectable" ).selectable();
+  });
+
+  function printSelectedValues(){
+    var collection = $(".ui-selected");
+    $('#numberOfSelectedRows').val(collection.length);
+  }
+
+  </script>
+</head>
+<body>
+
+<div>
+    <div id="SelectableTable"><span id="deletableText">Selectable table</span></div>
+    <table>
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+        </tr>
+        </thead>
+        <tbody id="selectable">
+
+        <tr id="row1">
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+        </tr>
+        <tr id="row2">
+            <td>Eve</td>
+            <td>Jackson</td>
+            <td>94</td>
+        </tr>
+        <tr id="row3">
+            <td>John</td>
+            <td>Jones</td>
+            <td>14</td>
+        </tr>
+        <tr id="row4">
+            <td>Mary</td>
+            <td>Ellen</td>
+            <td>38</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <input type="button" id="selectedRows" name="selectedRows" value="Select" onclick="printSelectedValues()"/>
+    <input type="text" id="numberOfSelectedRows" name="numberOfRowsSelected" value="Number Of Rows Selected" />
+</div>
+
+<div class="outer">
+    <a href="large_table.htm" class="inner"></a>
+</div>
+
+</body>
+</html>

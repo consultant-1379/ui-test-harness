@@ -1,0 +1,33 @@
+[
+    {
+        "hostname": "te_master",
+        "ip": "localhost",
+        "type": "UNKNOWN",
+        "ports": {"http": 8091, "ssh": 22}
+    },
+    {
+        "hostname": "te_slave",
+        "ip": "159.107.164.212",
+        "type": "UNKNOWN",
+        "ports": {"ssh": 22}
+    },
+    {
+        "hostname": "message_bus",
+        "ip": "localhost",
+        "type": "UNKNOWN",
+        "ports": {"http": 8080, "amqp": 5672}
+    },
+    {
+        "hostname": "event_repository",
+        "ip": "http://localhost",
+        "type": "UNKNOWN",
+        "ports": {"http": 8080}
+    },
+    {
+        "hostname": "vis_engine",
+        "ip": "192.168.0.104",
+        "type": "UNKNOWN",
+        "ports": {"http": 8080}
+    }
+
+]

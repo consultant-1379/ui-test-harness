@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        div {
+            padding: 5px;
+        }
+
+        .section {
+            border: 1px;
+            padding: 10px;
+            margin: 10px;
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+
+<div id="component1" class="section">
+    <h1>Custom component 1</h1>
+    <form>
+        <div>
+            <label for="firstName">First name</label><input type="text" id="firstName" name="firstName"/>
+            <label for="lastName">Last name</label><input type="text" id="lastName" name="lastName"/>
+        </div>
+        <input class="button" type="button" value="Save 1" onclick="save1()"/>
+    </form>
+</div>
+
+<div id="component2" class="section">
+    <h1>Custom component 2</h1>
+    <form>
+        <div>
+            <label for="firstName2">First name</label><input type="text" id="firstName2" name="firstName"/>
+            <label for="lastName2">Last name</label><input type="text" id="lastName2" name="lastName"/>
+        </div>
+        <input class="button" type="button" value="Save 2" onclick="save2()"/>
+    </form>
+</div>
+
+<div class="section notificationArea">
+    <h1>Global Section mapped inside each CustomComponent:</h1>
+    <div id="notification" class="notification"></div>
+</div>
+
+<div class="section">
+    <h1>Global list of labels mapped inside each CustomComponent:</h1>
+    <ul>
+        <li class="globalItem">1</li>
+        <li class="globalItem">2</li>
+        <li class="globalItem">3</li>
+    </ul>
+</div>
+
+<div class="section" id="dynamicGlobalSectionHolder">
+
+</div>
+
+<script>
+    function save1() {
+        document.getElementById("notification").innerHTML = "Component 1 saved";
+    }
+    function save2() {
+        document.getElementById("notification").innerHTML = "Component 2 saved";
+    }
+    function addGlobalSection() {
+        document.getElementById("dynamicGlobalSectionHolder").innerHTML = "<h1 class=\"dynamicGlobalSection\">Dynamic global section</h1>";
+    }
+    function removeGlobalSection() {
+        document.getElementById("dynamicGlobalSectionHolder").innerHTML = "";
+    }
+    window.onload = function() {
+        setTimeout(addGlobalSection, 1000);
+        setTimeout(removeGlobalSection, 3000);
+        setTimeout(addGlobalSection, 6000);
+    }
+</script>
+
+</body>
+</html>

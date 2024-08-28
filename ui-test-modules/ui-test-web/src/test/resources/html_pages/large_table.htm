@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Large Table with Dynamic Elements</title>
+    <script src="jquery-1.10.2.js"></script>
+    <script src="jquery-ui.js"></script>
+
+    <script>
+  $(function() {
+    $( "#selectable" ).selectable();
+  });
+
+  function printSelectedValues(){
+    var collection = $(".ui-selected");
+    $('#numberOfSelectedRows').val(collection.length);
+  }
+
+  $(document).ready(function() {
+    var rowNum;
+    for(i=0;i<50;i++){
+        rowNum="row"+i;
+        cellA="cellA"+i;
+        setTimeout("$(\"#tableID\").append(\"<tr id="+rowNum+" class=multipleRows><td class=td>"+rowNum+"</td><td class=td>"+cellA+"</td><td class=td>0</td></tr>\")", (i*50));
+    }
+    setTimeout("$(\"#tableID\").append(\"<tr id="+rowNum+" class=multipleRows><td class=td>"+rowNum+"</td><td class=td>"+cellA+"</td><td class=td>0</td></tr>\")", (10000));
+  });
+
+  </script>
+</head>
+<body>
+
+<div>
+    <div id="SelectableTable"><span id="deletableText">Selectable table</span></div>
+    <table>
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+        </tr>
+        </thead>
+        <tbody id="tableID">
+
+        <tr id="staticrow1" class="multipleRows">
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+        </tr>
+        <tr id="staticrow2" class="multipleRows">
+            <td>Eve</td>
+            <td>Jackson</td>
+            <td>94</td>
+        </tr>
+        <tr id="staticrow3" class="multipleRows">
+            <td>John</td>
+            <td>Jones</td>
+            <td>14</td>
+        </tr>
+        <tr id="staticrow4" class="multipleRows">
+            <td>Mary</td>
+            <td>Ellen</td>
+            <td>38</td>
+        </tr>
+        <tr id="staticrow5" class="multipleRows">
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+        </tr>
+        <tr id="staticrow6" class="multipleRows">
+            <td>Eve</td>
+            <td>Jackson</td>
+            <td>94</td>
+        </tr>
+        <tr id="staticrow7" class="multipleRows">
+            <td>John</td>
+            <td>Jones</td>
+            <td>14</td>
+        </tr>
+        <tr id="staticrow8" class="multipleRows">
+            <td>Mary</td>
+            <td>Ellen</td>
+            <td>38</td>
+        </tr>
+        <tr id="staticrow9" class="multipleRows">
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+        </tr>
+        <tr id="staticrow10" class="multipleRows">
+            <td>Eve</td>
+            <td>Jackson</td>
+            <td>94</td>
+        </tr>
+        <tr id="staticrow11" class="multipleRows">
+            <td>John</td>
+            <td>Jones</td>
+            <td>14</td>
+        </tr>
+        <tr id="staticrow12" class="multipleRows">
+            <td>Mary</td>
+            <td>Ellen</td>
+            <td>38</td>
+        </tr>
+        <tr id="staticrow13" class="multipleRows">
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+        </tr>
+        <tr id="staticrow14" class="multipleRows">
+            <td>Eve</td>
+            <td>Jackson</td>
+            <td>94</td>
+        </tr>
+        <tr id="staticrow15" class="multipleRows">
+            <td>John</td>
+            <td>Jones</td>
+            <td>14</td>
+        </tr>
+        <tr id="staticrow16" class="multipleRows">
+            <td>Mary</td>
+            <td>Ellen</td>
+            <td>38</td>
+        </tr>
+        <tr id="staticrow17" class="multipleRows">
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+        </tr>
+        <tr id="staticrow18" class="multipleRows">
+            <td>Eve</td>
+            <td>Jackson</td>
+            <td>94</td>
+        </tr>
+        <tr id="staticrow19" class="multipleRows">
+            <td>John</td>
+            <td>Jones</td>
+            <td>14</td>
+        </tr>
+        <tr id="staticrow20" class="multipleRows">
+            <td>Mary</td>
+            <td>Ellen</td>
+            <td>38</td>
+        </tr>
+        <tr id="staticrow21" class="multipleRows">
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+        </tr>
+        <tr id="staticrow22" class="multipleRows">
+            <td>Eve</td>
+            <td>Jackson</td>
+            <td>94</td>
+        </tr>
+        <tr id="staticrow23" class="multipleRows">
+            <td>John</td>
+            <td>Jones</td>
+            <td>14</td>
+        </tr>
+        <tr id="staticrow24" class="multipleRows">
+            <td>Mary</td>
+            <td>Ellen</td>
+            <td>38</td>
+        </tr>
+        <tr id="staticrow25" class="multipleRows">
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+        </tr>
+        <tr id="staticrow26" class="multipleRows">
+            <td>Eve</td>
+            <td>Jackson</td>
+            <td>94</td>
+        </tr>
+        <tr id="staticrow27" class="multipleRows">
+            <td>John</td>
+            <td>Jones</td>
+            <td>14</td>
+        </tr>
+        <tr id="staticrow28" class="multipleRows">
+            <td>Mary</td>
+            <td>Ellen</td>
+            <td>38</td>
+        </tr>
+        <tr id="staticrow29" class="multipleRows">
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+        </tr>
+        <tr id="staticrow30" class="multipleRows">
+            <td>Eve</td>
+            <td>Jackson</td>
+            <td>94</td>
+        </tr>
+        <tr id="staticrow31" class="multipleRows">
+            <td>John</td>
+            <td>Jones</td>
+            <td>14</td>
+        </tr>
+        <tr id="staticrow32" class="multipleRows">
+            <td>Mary</td>
+            <td>Ellen</td>
+            <td>38</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
